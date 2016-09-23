@@ -1,0 +1,63 @@
+html, body {
+    height: 100%;
+}
+
+
+@media (min-width:992px) {
+
+}
+
+@media (max-width:992px) {
+
+}
+
+
+.lista_sds {background: red;}
+
+section {
+    width: 100%;
+    position: fixed;
+    top:0;
+}
+
+#push {
+    position:relative;
+    height: 38%;
+}
+
+#main {
+    background-color:white;
+    position:relative;
+    z-index:990;
+}
+
+.elIcon {
+    width: 30px; 
+    margin-top: 10px;
+}
+
+.laDesc { 
+    vertical-align: top; 
+    padding-left: 10px;
+}
+
+.userView {
+    background: #23476B;text-align: center;
+}
+
+.logoChico {
+    width: 200px;
+
+}
+
+.page-title {
+    padding-left: 12px;
+}
+
+.contactus {
+	background: #FFF;
+}
+
+.texto-blanco {
+	font-size: 17px;
+}

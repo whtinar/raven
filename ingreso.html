@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Raven Mechanical</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="css/materialize.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    
+<style>
+	.moverDerecha {float: right; margin-top: 8px;}
+	.navbar-fixed {height: 79px;}
+	td {font-size: 16px !important;}
+</style>
+</head>
+<body class="teal darken-2">
+	<div class="navbar-fixed">
+		<nav class="top-nav teal darken-4">
+			<div class="container">
+				<div class="navbar-fixed">
+					<a class="page-title">Raven Mechanical</a>
+
+					<a class='dropdown-button btn moverDerecha' data-beloworigin="true" href='#' data-activates='dropdown1'>Action</a>
+					<ul id='dropdown1' class='dropdown-content'>
+					    <li><a href="#" id="aboutus">About us</a></li>
+					    <li><a href="#" id="contactus">Contact us</a></li>
+					    <li class="divider"></li>
+					    <li><a href="index.html">Logout</a></li>
+					</ul>
+
+					<ul id="slide-out" class="side-nav fixed">
+						<li>
+							<div class="userView light-blue darken-4">
+								<!-- <img class="background" src="img/macchu.jpg"> -->
+								<a href="ingreso.html"><img src="img/logoblanco.png" class="logoChico"></a>
+								<a href="#!name"><span class="white-text center-align name"></span></a>
+							</div>
+						</li>
+						<li><a class="waves-effect" href="#!" data-valor="1"><img src="img/acids.png" class="elIcon"><span class="laDesc">ACID</span></a></li>
+						<li><a class="waves-effect" href="#!" data-valor="2"><img src="img/automotive.png" class="elIcon"><span class="laDesc">AUTOMOTIVE</span></a></li>
+						<li><a class="waves-effect" href="#!" data-valor="3"><img src="img/building.png" class="elIcon"><span class="laDesc">BUILDING MATERIALS</span></a></li>
+						<li><a class="waves-effect" href="#!" data-valor="4"><img src="img/chemicals.png" class="elIcon"><span class="laDesc">CHEMICALS</span></a></li>
+						<li><a class="waves-effect" href="#!" data-valor="5"><img src="img/drygoods.png" class="elIcon"><span class="laDesc">DRY GOODS</span></a></li>
+						<li><a class="waves-effect" href="#!" data-valor="6"><img src="img/gases.png" class="elIcon"><span class="laDesc">GASES</span></a></li>
+						<li><a class="waves-effect" href="#!" data-valor="7"><img src="img/metals.png" class="elIcon"><span class="laDesc">METALS</span></a></li>		
+					</ul>
+					<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+		
+	<div class="container teal lighten-5" id="main">
+		<div class="row">
+			<div class="col l12 s12">
+				<h4 class="center-align"><img class="responsive-img" src="img/logo.png"></h4>
+				<div id="lista_sds"></div>
+                <div id="aboutusC"></div>
+                <div id="contactusC" class="contactus"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="js/jquery.min.js"> </script>
+	<script src="js/materialize.min.js"> </script>
+   
+<script>
+
+	$(document).ready(function(){
+		$('.slider').slider({full_width: true});
+		
+		$('.button-collapse').sideNav({
+			menuWidth: 280,
+			edge: 'left',
+			closeOnClick: true
+		});
+
+		$('.dropdown-button').dropdown({
+			inDuration: 300,
+			outDuration: 225,
+			constrain_width: false,
+			hover: true,
+			gutter: 0,
+			belowOrigin: false,
+			alignment: 'right'
+		});
+
+		function $_GET(param) {
+			/* Obtener la url completa que manda index por cabecera*/
+			/* Busco a partir del signo de interrogación ?, por si manda mas de uno */
+			/* limpio la cadena quitándole el signo ? */
+			/* Creo un array con parametro=valor */
+			/*  Recorro el array url obtengo el valor y divido en dos partes a través del signo = 
+				0 = parametro
+				1 = valor
+				Si el parámetro existe devolvera su valor
+			*/
+			url = document.URL;
+			url = String(url.match(/\?+.+/));
+			url = url.replace("?", "");
+			url = url.split("&");
+			x = 0;
+			while (x < url.length) {
+				p = url[x].split("=");
+				if (p[0] == param) {
+					return decodeURIComponent(p[1]);
+				}
+				x++;
+			}
+		}
+		$('.name').html($_GET("nombre"));
+	});
+	
+	$('#aboutus').on('click', function() {
+		$('#lista_sds').hide();
+		$('#contactusC').hide();
+		$('#aboutusC').show();
+		$.ajax({
+			type: "POST",
+			url: "aboutus.html",
+			data: $("#aboutus").serialize(),
+			success: function(data) {
+				$('#aboutusC').html(data);
+			}
+		});
+	});
+
+	$('#contactus').on('click', function() {
+		$('#lista_sds').hide();
+		$('#aboutusC').hide();
+		$('#contactusC').show();
+		$.ajax({
+			type: "POST",
+			url: "contactus.html",
+			data: $("#contacto").serialize(),
+			success: function(data) {
+				$('#contactusC').html(data);
+			}
+		});
+	});
+	
+	$('.waves-effect').on('click', function(event) {
+		$('#about').hide();
+		$('#contactusC').hide();
+		$('#lista_sds').show();
+		var sdsId = $(this).data('valor');
+		var cabeza = $(this).eq(0).text();
+		$.ajax({
+			url: "http://www.ravenmechanicalsys.net/apprest/"+sdsId
+		}).then(function(respuesta) {
+
+			var tabla = '<div class="input-field col s12"><input type="text" id="search" value="">';
+			tabla += '<label for="search">Search</label></div>';
+			tabla += '<table id="sds" cellpadding="0" cellspacing="0" class="cell-border hover order-column row-border stripe">';
+			tabla += '<thead>';
+			tabla += '<tr>';
+			tabla += '<th colspan="2" class="center-align"><h5>'+cabeza+'</h5></th>';
+			tabla += '</tr>';
+			tabla += '</thead>';
+			tabla += '<tbody>';
+			tr = '';
+			for (var i = 0; i < respuesta.length; i++) {
+				idSds = respuesta[i].id;
+				tr +='<tr>';
+				tr +=	'<td>'+respuesta[i].titulo+'</td>'+
+						'<td>'+
+						  	'<a href="http://ravenmechanicalsys.net/apprest/'+idSds+'/edit">'+
+						  		'<button class="waves-effect waves-light btn right-align">Download</button>'+
+						  	'</a>'+
+						'</td>';
+				tr += '</tr>';
+			}
+			tabla += tr;
+			tabla += '</tbody></table>';
+
+			$('#lista_sds').html( tabla );
+			$('.page-title').html(cabeza);
+			$("#search").keyup(function() {
+				if( $(this).val() != "") {
+					$("#sds tbody>tr").hide();
+					$("#sds td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+				} else {
+					$("#sds tbody>tr").show();
+				}
+			});
+			$.extend($.expr[":"], 
+			{
+				"contains-ci": function(elem, i, match, array) 
+				{
+					return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+				}
+			});			
+		});
+	});	
+</script>
+</body>
+</html>

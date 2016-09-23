@@ -1,0 +1,47 @@
+<form class="col s12" method="post" id="contacto">
+    <h4 class="center-align">CONTAC US</h4>
+    <div class="row">
+    	<div class='input-field col s12'>
+    		<input type="text" name="nombre" value="" required>
+            <label for='nombre'>Name</label>
+		</div>
+    </div>
+    <div class="row">
+    	<div class='input-field col s12'>
+    		<input type="email" name="correo" onblur="this.setAttribute('value', this.value);" value="" required>
+            <label for="correo">E-Mail</label>
+		</div>
+	</div>
+    <div class="row">
+    	<div class='input-field col s12'>
+            <input type="text" name="telefono" value="" required>
+            <label for="telefono">Phone</label>
+		</div>
+	</div>
+    <div class="row">
+    	<div class='input-field col s12'>
+    		<div class="flex">
+				<textarea placeholder="Message" name="mensaje" rows="5" required></textarea>
+    		</div>
+    	</div>
+    </div>
+    <center>
+        <button type='button' name='btn_send' class='col s6 offset-s3 btn btn-large waves-effect indigo btnContact'>Send</button>
+    </center>
+</form>
+
+<script type="text/javascript">
+$(function(){
+	$('.btnContact').on('click', function() {
+		$.ajax({
+			type: "POST",
+			url: "http://www.nazcatechperu.com/demo/demo_app/mensaje.php",
+			data: $("#contacto").serialize(),
+			success: function(data) {
+				Materialize.toast('The message was sent', 5000, 'rounded')
+			}
+		});
+		return false;
+	});
+});
+</script>
