@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.ravenmechanica.sds" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Raven SDS</name>
+    <description>
+       SDS Files
+    </description>
+    <author email="freddys@inazca.com" href="https://www.itnazca.com/">
+        Nazca Tech & Consulting
+    </author>
+	<content src="index.html" />
+	<icon src="img/icono.png" />
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
