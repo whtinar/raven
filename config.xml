@@ -8,8 +8,11 @@
         Nazca Tech And Consulting
     </author>
 	<content src="index.html" />
-	<icon src="img/icono.png" />
     <platform name="ios">
+	<icon src="img/icono76.png" width="76" height="76"/>
+	<icon src="img/icono90.png" width="90" height="90"/>
+	<icon src="img/icono120.png" width="120" height="120"/>
+	<icon src="img/icono152.png" width="152" height="152"/>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
