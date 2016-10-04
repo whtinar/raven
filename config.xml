@@ -9,7 +9,7 @@
     </author>
 	<content src="index.html" />
 	
-	<gap:plugin name="com.phonegap.plugin.statusbar" />
+	<gap:plugin name="com.phonegap.plugin.statusbar" source="pgb" spec="1.1.0" />
 
 	<preference name="StatusBarOverlaysWebView" value="false"/>
 	<preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
