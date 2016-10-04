@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="com.ravenmechanica.sds" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.ravenmechanical.sds" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Raven SDS</name>
     <description>
        SDS Files
@@ -8,11 +8,28 @@
         Nazca Tech And Consulting
     </author>
 	<content src="index.html" />
+	
+	<gap:plugin name="com.phonegap.plugin.statusbar" />
+
+	<preference name="StatusBarOverlaysWebView" value="false"/>
+	<preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
+	<preference name="StatusBarStyle" value="default" />
+	
     <platform name="ios">
-	<icon src="img/icono76.png" width="76" height="76"/>
-	<icon src="img/icono90.png" width="90" height="90"/>
-	<icon src="img/icono120.png" width="120" height="120"/>
-	<icon src="img/icono152.png" width="152" height="152"/>
+		<icon src="icon-76.png" width="76" height="76"/>
+		<icon src="icon-90.png" width="90" height="90"/>
+		<icon src="icon-120.png" width="120" height="120"/>
+		<icon src="icon-152.png" width="152" height="152"/>
+		<splash src="splash-320x480.png" width="320" height="480" />
+		<splash src="splash-640x960.png" width="640" height="960" />
+		<splash src="splash-768x1024.png" width="768" height="1024" />
+		<splash src="splash-1536x2048.png" width="1536" height="2048" />
+		<splash src="splash-1024x768.png" width="1024" height="768" />
+		<splash src="splash-2048x1536.png" width="2048" height="1536" />
+		<splash src="splash-640x1136.png" width="640" height="1136" />
+		<splash src="splash-750x1334.png" width="750" height="1334" />
+		<splash src="splash-1242x2208.png" width="1242" height="2208" />
+		<splash src="splash-2208x1242.png" width="2208" height="1242" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>

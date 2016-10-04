@@ -35,7 +35,7 @@ $(function(){
 	$('.btnContact').on('click', function() {
 		$.ajax({
 			type: "POST",
-			url: "http://www.nazcatechperu.com/demo/demo_app/mensaje.php",
+			url: "https://www.itnazca.com/raven_app/contact/mensaje.php",
 			data: $("#contacto").serialize(),
 			success: function(data) {
 				Materialize.toast('The message was sent', 5000, 'rounded')
